@@ -128,7 +128,7 @@ app.post("/schedule-meeting", async (req, res) => {
   }
 });
 
-app.get('/time', async (req, res) => {
+app.get(['/time','/api/time'], async (req, res) => {
   res.set('Cache-Control', 'no-store');
   try {
     const response = await axios.post(
@@ -156,6 +156,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = app;
+
 
 
 
