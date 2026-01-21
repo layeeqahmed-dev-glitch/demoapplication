@@ -3,7 +3,11 @@ const axios = require("axios");
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*', // Production mein ise HubSpot ke domain tak limit kar sakte hain
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // 🔐 API KEY (use env in prod)
@@ -156,6 +160,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = app;
+
 
 
 
