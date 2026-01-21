@@ -1,0 +1,97 @@
+{
+  "uid": "demo_app",
+  "type": "workflow-action",
+  "config": {
+    "actionUrl": "https://taxonomic-wonky-carley.ngrok-free.dev/schedule-meeting",
+    "isPublished": true,
+    "supportedClients": [
+      { "client": "WORKFLOWS" }
+    ],
+    "objectTypes": ["CONTACT"],
+
+    "inputFields": [
+      {
+        "typeDefinition": {
+          "name": "meeting_name",
+          "type": "string",
+          "fieldType": "text"
+        },
+        "supportedValueTypes": ["OBJECT_PROPERTY"],
+        "isRequired": true
+      },
+      {
+        "typeDefinition": {
+          "name": "meeting_date",
+          "type": "string",
+          "fieldType": "date"
+        },
+        "supportedValueTypes": ["OBJECT_PROPERTY"],
+        "isRequired": true
+      },
+      {
+        "typeDefinition": {
+          "name": "meeting_time",
+          "type": "string",
+          "fieldType": "text"
+        },
+        "supportedValueTypes": ["OBJECT_PROPERTY"],
+        "isRequired": true
+      },
+      {
+        "typeDefinition": {
+          "name": "meeting_meridiem",
+          "type": "string",
+          "fieldType": "text"
+        },
+        "supportedValueTypes": ["OBJECT_PROPERTY"],
+        "isRequired": true
+      },
+      {
+        "typeDefinition": {
+          "name": "timezone",
+          "type": "string",
+          "fieldType": "text"
+        },
+        "supportedValueTypes": ["OBJECT_PROPERTY"],
+        "isRequired": true
+      },
+      {
+        "typeDefinition": {
+          "name": "email",
+          "type": "string",
+          "fieldType": "text"
+        },
+        "supportedValueTypes": ["OBJECT_PROPERTY"],
+        "isRequired": true
+      }
+    ],
+
+    "labels": {
+      "en": {
+        "actionName": "Demo App",
+        "actionDescription": "Schedules MeetHour meeting using form submitted data",
+        "actionCardContent": "Schedule {{meeting_name}}",
+
+        "inputFieldLabels": {
+          "meeting_name": "Meeting Name",
+          "meeting_date": "Meeting Date",
+          "meeting_time": "Meeting Time",
+          "meeting_meridiem": "AM/PM",
+          "timezone": "Timezone",
+          "email": "Email"
+        },
+
+        "inputFieldDescriptions": {
+          "meeting_name": "Enter the name of the meeting",
+          "meeting_date": "Select the date for the meeting",
+          "meeting_time": "Enter the meeting time",
+          "meeting_meridiem": "Specify AM or PM",
+          "timezone": "Enter your timezone",
+          "email": "Enter the email of the contact"
+        }
+      }
+    }
+  }
+}
+
+
