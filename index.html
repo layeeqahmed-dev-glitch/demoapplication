@@ -16,7 +16,7 @@
             formId: "0059aea9-d50d-4bfe-b353-d44ec762623d",
             region: "na2",
             onFormReady: function ($form) {
-                fetch('http://localhost:3000/time', { cache: 'no-store' })
+                fetch('https://demoapplication-tau.vercel.app/api/time', { cache: 'no-store' })
                     .then(res => res.json())
                     .then(data => {
                         console.log('Timezones response:', data);
@@ -62,7 +62,7 @@
 
                 console.log("📦 Payload to backend:", payload);
 
-                fetch('http://localhost:3000/schedule-meeting', {
+                fetch('https://demoapplication-tau.vercel.app/api/schedule-meeting', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -76,3 +76,4 @@
         });
     </script>
 </body>
+
