@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Meeting Form</title>
+</head>
+
+<body>
+    <div id="hubspotForm"></div>
+
+    <script charset="utf-8" type="text/javascript" src="//js-na2.hsforms.net/forms/embed/v2.js"></script>
+    <script>
+        hbspt.forms.create({
+            portalId: "244906656",
+            formId: "0059aea9-d50d-4bfe-b353-d44ec762623d",
+            region: "na2",
+            onFormReady: function ($form) {
+                fetch('http://localhost:3000/time', { cache: 'no-store' })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('Timezones response:', data);
+
+                        const select = $form.querySelector('select[name="time_zone"]');
+                        if (!select) {
+                            console.error('❌ Dropdown field "time_zone" not found!');
+                            return;
+                        }
+
+                        // ✅ Clear existing options
+                        select.innerHTML = '';
+
+                        // ✅ Populate new options
+                        data.timezones.forEach(tz => {
+                            const option = document.createElement('option');
+                            option.value = tz.value;
+                            option.textContent = tz.name;
+                            select.appendChild(option);
+                        });
+                    })
+                    .catch(err => console.error('Error loading timezones:', err));
+            },
+            onFormSubmit: function ($form) {
+                // helper to safely get values
+                const getValue = (selector) => {
+                    const el = $form.querySelector(selector);
+                    return el ? el.value : '';
+                };
+
+                const payload = {
+                    inputFields: {
+                        meeting_name: getValue('input[name="meeting_name"]'),
+                        meeting_date: getValue('input[name="meeting__date"]'),
+                        meeting_time: getValue('input[name="meeting_time"]'),
+                        meeting_meridiem: getValue('select[name="meeting__meridiem"]'),
+                        email: getValue('input[name="email"]'),
+                        timezone: getValue('select[name="time_zone"]'),
+                        is_show_portal: 1
+                    }
+                };
+
+
+                console.log("📦 Payload to backend:", payload);
+
+                fetch('http://localhost:3000/schedule-meeting', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                    .then(res => res.json())
+                    .then(result => {
+                        console.log('✅ Meeting scheduled:', result);
+                    })
+                    .catch(err => console.error('Error scheduling meeting:', err));
+            }
+        });
+    </script>
+</body>
