@@ -11,7 +11,7 @@ app.use(cors({
 app.use(express.json());
 
 // 🔐 API KEY (use env in prod)
-const MEETHOUR_API_KEY = "mytkn";
+const MEETHOUR_API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyenF5cDM2dWw0dHg5a3Z5cHk0cHp1cnNtMndvenMxeTN6d3oiLCJqdGkiOiJhNDdkYmJhNmFiZDRkMWJhZGQwNTAzMzk2NmNhN2Y4MmMzZmZlYzZiNzJhNmVhNjY4Y2I0YjU5MmYzNWI2ZDU2OGViNWI2MWQ4YjM0NmM0MiIsImlhdCI6MTc2NTg4NjE3Ni4yOTMzMjYsIm5iZiI6MTc2NTg4NjE3Ni4yOTMzMywiZXhwIjoxNzk3NDIyMTc2LjIwNDk3Nywic3ViIjoiNDY2MjQiLCJzY29wZXMiOltdfQ.VeU8wLKbmWfFdRFjGeN0RkN05lXejkHP0JeqcFVixB9jBi7ftsHHVkJ5xqACb3D9fxLVCT65oFk8-Gc_kZmq5g";
 
 app.post(["/schedule-meeting","/api/schedule-meeting"], async (req, res) => {
   console.log("🔔 /schedule-meeting HIT");
@@ -160,6 +160,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = app;
+
 
 
 
